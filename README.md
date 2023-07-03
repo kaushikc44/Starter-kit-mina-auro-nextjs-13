@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+This starter kit provides a streamlined setup for building decentralized applications (dApps) using Next.js 13 and integrating Auro Wallet with the Mina protocol. It includes the necessary configurations and boilerplate code to quickly get started with developing dApps on the Mina blockchain. With Auro Wallet integration, developers can easily connect and interact with the Mina protocol, enabling secure and seamless transactions. Leverage the power of Next.js 13's modern features and Auro Wallet's functionalities to create powerful and user-friendly dApps on the Mina blockchain. Start building decentralized applications efficiently with this comprehensive starter kit.
+
 We are also using Daisy UI framework and Material UI framework this lets you customzie all the boilerplate.
 
 ## Getting Started
