@@ -7,6 +7,12 @@
 
 Build decentralized apps (dApps) on the Mina protocol with Next.js 13 and Auro Wallet integration. Get started quickly with this streamlined starter kit featuring Daisy UI and Material UI for easy customization.
 
+## Features
+
+- Connect to Auro Wallet and interact with the Mina protocol.
+- Display the connected account address.
+- Switch between different networks.
+
 ## Getting Started
 
 1. Clone the repository:
@@ -34,19 +40,3 @@ Open http://localhost:3000 to see the result.
 - Modify `app/page.js` to edit the main page content.
 - Easily customize the UI using Daisy UI and Material UI.
 
-## Learn More
-
-- Next.js Documentation: [https://nextjs.org/docs](https://nextjs.org/docs)
-- Auro Wallet: [https://auro-wallet.com/](https://auro-wallet.com/)
-- Daisy UI: [https://daisyui.com/](https://daisyui.com/)
-- Material UI: [https://material-ui.com/](https://material-ui.com/)
-
-Contribute to the Next.js GitHub repository and check out the deployment documentation for Vercel.
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the Vercel platform from the creators of Next.js. Refer to the Next.js deployment documentation for details.
-
-Icons: ![Daisy UI Icon](daisy-ui-icon.png), ![Auro Wallet Icon](auro-wallet-icon.png), ![Material UI Icon](material-ui-icon.png)
-
-Start building powerful and user-friendly dApps on the Mina blockchain with Next.js and Auro Wallet integration.
