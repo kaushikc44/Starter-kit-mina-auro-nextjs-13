@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 We are also using Daisy UI framework and Material UI framework this lets you customzie all the boilerplate.
 
 ## Getting Started
-Install:- 
+Install NPM inorder to install all the required packages:- 
 ```bash  
 npm install -g npm
 ```
@@ -11,13 +11,17 @@ Then install npx you may use yarn as well but in this case we are using npx
 ```bash
 npm i npx
 ```
-In order to get Started install Next Js 13 using npx 
+In order to get Started using the boilerplate you need to clone the repository
 ```bash
-npx create-next-app@latest
+git clone https://github.com/kaushikc44/Starter-kit-mina-auro-nextjs-13.git
+```
+Once the repository is Cloned , make sure to run npm install 
+```bash 
+npm i
 ```
 
 
-First, run the development server:
+In order to run the development server:
 
 ```bash
 npm run dev
@@ -27,7 +31,7 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Opens [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
