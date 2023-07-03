@@ -1,6 +1,21 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+We are also using Daisy UI framework and Material UI framework this lets you customzie all the boilerplate.
+
 ## Getting Started
+Install:- 
+```bash  
+npm install -g npm
+```
+Then install npx you may use yarn as well but in this case we are using npx
+```bash
+npm i npx
+```
+In order to get Started install Next Js 13 using npx 
+```bash
+npx create-next-app@latest
+```
+
 
 First, run the development server:
 
