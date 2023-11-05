@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from "react";
-import WalletExist from "./WalletExist";
+
 
 export default function Wallet({ children }) {
   const initialState = { accounts: [] };
@@ -84,7 +84,7 @@ export default function Wallet({ children }) {
 
   return (
     <>
-      <WalletExist />
+      
       <div className="flex flex-row items-center justify-evenly">
         {isAuro && (
           <button className="btn btn-outline btn-success" onClick={handleConnect}>
