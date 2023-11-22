@@ -66,7 +66,7 @@ export default function Wallet({ children }) {
     <>
       
           
-            <div className="flex flex-row items-center justify-evenly">
+            <div className="flex flex-row items-center justify-evenly border-b-2">
                  <button className="btn btn-outline btn-success" onClick={handleConnect}>{textUsed}</button>
                 {textUsed === "Connected" && isAuro   && <div className="badge badge-primary badge-outline">{networkLive.name}</div>}
                 {textUsed === "Connected" && isAuro   && wallet.accounts.length > 0  && <div className="badge badge-primary badge-outline">{wallet.accounts[0]}</div>}
