@@ -1,62 +1,78 @@
 "use client"
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
-import Collapse from '@mui/material/Collapse';
-import { useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
-import CloseIcon from '@mui/icons-material/Close';
+import { useState, useEffect } from "react";
+import WalletExist from "./WalletExist";
+import { getAccountBalance } from "./getBalance";
 
+export default function Wallet({ children }) {
+  const initialState = { accounts: [] };
+  const [textUsed, settextUsed] = useState("Connect Auro");
+  const [wallet, setWallet] = useState(initialState);
+  const [networkLive, setNetworkLive] = useState(); // Changed variable name to setNetworkLive
+  const [accountBalance, setAccountBalance] = useState();
+  const [injectedProvider, setInjectedProvider] = useState(false);
+  const [isAuro, setIsAuro] = useState(false);
 
-export default function WalletExist(){
-    const [open,setOpen] = useState(true)
-    let injectProvider =  false
-    if (typeof window.mina !== 'undefined') {
-        injectProvider = true
+  useEffect(() => {
+    // Check for window.mina when the component mounts
+    if (typeof window.mina !== "undefined") {
+      setInjectedProvider(true);
+      console.log(window.mina);
     }
-    return (
-        <>
-            {injectProvider ? ( <Box sx={{ width: '100%' }}>
-                <Collapse in={open}>
-                    <Alert
-                    action={
-                        <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => {
-                            setOpen(false);
-                        }}
-                        >
-                            <CloseIcon fontSize="inherit" />
-                        </IconButton>
-                    }
-                    sx={{ mb: 2 }}
-                    >
-                        Auro does exists
-                    </Alert>
-                </Collapse>
-            </Box>) : ( <Box sx={{ width: '100%' }}>
-                <Collapse in={open}>
-                    <Alert
-                    action={
-                        <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => {
-                            setOpen(false);
-                        }}
-                        >
-                            <CloseIcon fontSize="inherit" />
-                        </IconButton>
-                    }
-                    sx={{ mb: 2 }} severity="error"
-                    >
-                        Auro does not exists!
-                    </Alert>
-                </Collapse>
-            </Box>)}
-        </>
-    )
+
+    // Define the event handler function
+    function handleChainChanged() {
+      setNetworkLive(window.mina.requestNetwork());
+    }
+
+    return () => {
+      if (injectedProvider) {
+        window.mina.removeListener("chainChanged", handleChainChanged);
+      }
+    };
+  }, [injectedProvider]);
+
+  // To display all the accounts
+  const updateWallet = async (accounts) => {
+    setWallet({ accounts });
+    console.log(wallet);
+  };
+
+  const handleConnect = async () => {
+    let accounts = await window.mina.request({
+      method: "mina_requestAccounts",
+    });
+
+    let isNetwork = await window.mina.request({ method: "mina_requestNetwork" });
+    console.log("The network is:", isNetwork);
+
+    const network = await window.mina.requestNetwork();
+    console.log("Accounts", accounts);
+
+    updateWallet(accounts);
+    settextUsed("Connected");
+    setNetworkLive(network); // Changed to setNetworkLive
+    const value = await getAccountBalance(accounts);
+    console.log("Balance",typeof(parseInt(value.account.balance.total)));
+    setAccountBalance(parseInt(value.account.balance.total))
+    console.log(networkLive);
+  };
+
+  useEffect(() => {
+    // Update isAuro based on injectedProvider
+    setIsAuro(injectedProvider);
+  }, [injectedProvider]);
+
+  return (
+    <>
+      
+            <WalletExist  />
+            <div className="flex flex-row items-center justify-evenly">
+                { isAuro && <button className="btn btn-outline btn-success" onClick={handleConnect}>{textUsed}</button>}
+                {textUsed === "Connected" && isAuro   && <div className="badge badge-primary badge-outline">{networkLive.name}</div>}
+                {textUsed === "Connected" && isAuro   && wallet.accounts.length > 0  && <div className="badge badge-primary badge-outline">{wallet.accounts[0]}</div>}
+                {textUsed === "Connected" && isAuro   && wallet.accounts.length > 0  && <div className="badge badge-primary badge-outline">{accountBalance} MINA</div>}
+            </div>
+            {children}
+      </>
+  );
 }
