@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import WalletExist from "./WalletExist";
 import { getAccountBalance } from "./getBalance";
+import { useBalance } from "@/context/balance.context";
 
 export default function Wallet({ children }) {
   const initialState = { accounts: [] };
@@ -11,6 +12,7 @@ export default function Wallet({ children }) {
   const [accountBalance, setAccountBalance] = useState();
   const [injectedProvider, setInjectedProvider] = useState(false);
   const [isAuro, setIsAuro] = useState(false);
+  const {  updateBalance } = useBalance();
 
   useEffect(() => {
     // Check for window.mina when the component mounts
@@ -54,8 +56,11 @@ export default function Wallet({ children }) {
     const value = await getAccountBalance(accounts);
     console.log("Balance",typeof(parseInt(value.account.balance.total)));
     setAccountBalance(parseInt(value.account.balance.total))
+    updateBalance(parseInt(value.account.balance.total))
     console.log(networkLive);
   };
+
+
 
   useEffect(() => {
     // Update isAuro based on injectedProvider
